@@ -1,0 +1,79 @@
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.7;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px 0;
+}
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+}
+h2 {
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+h3 {
+    font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+h3 span {
+    font-weight: 400;
+}
+section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+section h3 {
+    font-size: 24px;
+    font-weight: 700;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+ul {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+article {
+    margin-bottom: 25px;
+}
+article p {
+    line-height: 1.8;
+}
+article em {
+    font-style: normal;
+    font-weight: 700;
+}
+footer {
+    margin-top: 50px;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+}
+nav a:hover {
+    color: #666;
+}
