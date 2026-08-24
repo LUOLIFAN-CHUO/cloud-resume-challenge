@@ -1,0 +1,33 @@
+name: Deploy Frontend to S3 and Invalidate CloudFront
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 拉取仓库最新代码
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. 配置 AWS 凭证
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # 如果你的 S3 和 CloudFront 部署在其他区域（如 ap-northeast-1），请在此修改
+
+      # 3. 将本地前端文件同步上传到 S3
+      - name: Deploy to S3
+        run: |
+          aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} --delete --exclude ".git/*" --exclude ".github/*"
+
+      # 4. 刷新 CloudFront 缓存（使新更新的页面立刻生效）
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
