@@ -77,3 +77,35 @@ nav a {
 nav a:hover {
     color: #666;
 }
+
+<style>
+.zoom-image-wrapper {
+    position: relative;
+    cursor: zoom-in;
+    border-radius: 4px;
+    overflow: hidden; /* 保证图片放大时不会超出圆角边框 */
+}
+.zoom-image-wrapper img {
+    display: block;
+    transition: transform 0.3s ease;
+}
+.zoom-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* 半透明黑底 */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    opacity: 0; /* 默认隐藏 */
+    transition: opacity 0.3s ease;
+}
+/* 鼠标悬停时的动画触发 */
+.zoom-image-wrapper:hover img {
+    transform: scale(1.05); /* 图片微微放大 */
+}
+.zoom-image-wrapper:hover .zoom-overlay {
+    opacity: 1; /* 遮罩层显现 */
+}
+</style>
